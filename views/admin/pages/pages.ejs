@@ -1,0 +1,52 @@
+<%- include('../../_layouts/adminHeader'); %>
+
+<div class="col-md-12">
+   <h2 class="page-title">Lista de Páginas</h2>
+   <a href="/admin/pages/add" class="btn btn-primary">Crear nueva página</a>
+   <br><br>
+
+   <% if (pages.length > 0) { %>
+   <table class="table table-striped table-hover table-bordered">
+      <thead class="bg-dark text-white text-center">
+         <tr>
+            <th class="home">Titulo</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+         </tr>
+      </thead>
+      <tbody>
+         <% pages.forEach(function(page){ %>
+         <tr id="id_<%= page._id %>" class="<%= page.slug %>">
+            <td><%= page.nombre %></td>
+            <td class="text-center">
+               <a href="/admin/pages/editar/<%= page._id %>" class="btn btn-sm btn-success">Editar</a>
+            </td>
+            <% if(page.slug == "home") { %>
+               <td></td>
+            <% }else { %>
+               <td class="text-center"><a class="btn btn-sm btn-danger confirmDelete" href="/admin/pages/eliminar/<%= page._id %>">Eliminar</a></td>
+            <% } %>
+         </tr>
+         <% }); %>
+      </tbody>
+   </table>
+   <% } else { %>
+      <h3 class="text-center">No hay Paginas</h3>
+   <% } %>
+</div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+   $('tbody').sortable({
+      items: "tr:not('.home')",
+      placeholder: "ui-state-hightlight",
+      update: function () {
+         var ids = $('tbody').sortable("serializable");
+         var url = "/admin/pages/reorder-pages";
+
+         $.post(url, ids);
+      }
+   });
+</script>
+
+<%- include('../../_layouts/adminFooter'); %>

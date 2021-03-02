@@ -1,0 +1,22 @@
+<%- include('../../_layouts/adminHeader'); %>
+
+<div class="col-md-3">
+   <a href="/admin/categoria" class="btn btn-light">&laquo; Regresar a categorias</a>
+</div>
+
+<div class="col-md-6 mt-5">
+   <h2 class="page-title text-center">Actualizar Categoría</h2>
+   <br>
+
+   <form method="POST" action="/admin/categoria/editar/<%= id %>">
+      <div class="form-group">
+         <label for="nombre">Nombre</label>
+         <input type="text" class="form-control" name="nombre" value="<%= nombre %>" 
+            placeholder="Nombre">
+      </div>
+
+      <button type="submit" class="btn btn-success btn-block">Actualizar</button>
+   </form>
+</div>
+
+<%- include('../../_layouts/adminFooter'); %>

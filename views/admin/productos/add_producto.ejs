@@ -1,0 +1,68 @@
+<%- include('../../_layouts/adminHeader'); %>
+
+<div class="col-md-3">
+   <a href="/admin/producto" class="btn btn-light">&laquo; Regresar a categorias</a>
+</div>
+
+<div class="col-md-6 mt-5">
+   <h2 class="page-title text-center">Nuevo Producto</h2>
+   <br>
+
+   <form method="POST" action="/admin/producto/add" enctype="multipart/form-data">
+      <div class="form-group">
+         <label for="nombre">Nombre</label>
+         <input type="text" class="form-control" name="nombre" value="<%= nombre %>"
+            placeholder="Nombre" autofocus autocomplete="off">
+      </div>
+      
+      <div class="form-group">
+         <label for="descripcion">Descripcion</label>
+         <textarea name="descripcion" id="contenido" class="form-control" cols="30" 
+            rows="10" placeholder="Descripcion"><%= descripcion %></textarea>
+      </div>
+
+      <div class="form-group">
+         <label for="precio">Precio</label>
+         <input type="text" class="form-control" name="precio" value="<%= precio %>"
+            placeholder="Precio">
+      </div>
+
+      <div class="form-group">
+         <label for="categoria">Categoria</label>
+         <select name="categoria" class="form-control">
+            <option selected>--- Selecciona una categoria ---</option>
+            <% categorias.forEach(function(categoria){ %>
+               <option value="<%= categoria.slug %>"><%= categoria.nombre %></option>
+            <% }); %>
+         </select>
+      </div>
+
+      <div class="form-group">
+         <label for="imagen">Imagen</label><br>
+         <input type="file" name="imagen" id="img"><br>
+         <img src="#" id="imagenPrevia" alt="">
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Agregar</button>
+   </form>
+</div>
+
+<script>
+   function readURL(input){
+      if(input.files && input.files[0]){
+         var reader = new FileReader();
+
+         reader.onload = function(e){
+            $('#imagenPrevia').attr("src", e.target.result).width(100).height(100);
+         }
+
+         reader.readAsDataURL(input.files[0]);
+      }
+   }
+
+   $('#img').change(function() {
+      readURL(this);
+   });
+</script>
+
+<%- include('../../_layouts/adminFooter'); %>

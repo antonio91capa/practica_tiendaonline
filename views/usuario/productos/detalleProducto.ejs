@@ -1,0 +1,46 @@
+<%- include('../../_layouts/header'); %>
+
+<%- include('../../_layouts/sidebar'); %>
+
+<div class="row">
+   <div class="col-xs-12 col-md-5">
+      <h3 class="page-header"><%= producto.nombre %></h3>
+      <img src="/producto_imagenes/<%= producto.id %>/<%= producto.imagen %>" 
+         alt="" class="spi">
+      <br>
+   </div>
+   <div class="col-xs-12 col-md-7">
+      <p><%- producto.descripcion %></p>
+      <p>$<%= parseFloat(producto.precio).toFixed(2) %></p>
+      <% if(isAutenticado) { %>
+         <p><a href="/carrito/add/<%= producto.slug %>">Agregar al carrito</a></p>
+      <% }else { %>
+         <p>Debes estar logueado para agregar el producto al carrito.</p>
+      <% } %>
+   </div>
+
+   <div class="col-xs-12">
+      <% if(galeriaImagenes) {%>
+         <ul class="gallery">
+            <% galeriaImagenes.forEach(function(imagen) { %>
+               <% if (imagen != "thumbs") { %>
+                  <li>
+                     <a href="/producto_imagenes/<%= producto.id %>/gallery/<% imagen %>" 
+                        data-fancybox="gallery">
+                        <img src="/productos_imagenes/<%= producto.id %>/gallery/thumbs/<% imagen %>" alt="">
+                     </a>
+                  </li>
+               <% } else { %>
+                  <li>No hay galeria de imagenes</li>
+               <% } %>
+            <% }); %>
+         </ul>
+      <% } %>
+   </div>
+</div>
+
+<!-- Close Sidebar Tags -->
+</div> <!-- class="col-xs-12 col-md-8" -->
+</div> <!-- class="row" -->
+
+<%- include('../../_layouts/footer'); %>

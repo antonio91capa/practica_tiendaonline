@@ -1,0 +1,25 @@
+<%- include('../_layouts/header') %>
+
+<div class="col-md-4"></div>
+<div class="col-md-4">
+
+   <h2 class="page-title text-center"><%= titulo %></h2>
+   <br>
+
+   <form method="POST" action="/usuario/login">
+      <div class="form-group">
+         <label for="username">Username</label>
+         <input type="text" class="form-control" name="username" placeholder="Username"
+            autofocus>
+      </div>
+
+      <div class="form-group">
+         <label for="password">Password</label>
+         <input type="password" class="form-control" name="password" placeholder="Contraseña">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+   </form>
+
+
+<%- include('../_layouts/footer') %>
