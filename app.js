@@ -95,6 +95,8 @@ app.use('/productos', productosRoute);
 app.use('/carrito', cartRoute);
 app.use('/usuario', usuarioRoute);
 app.use('/', homeRoute);
+
+//Error 404
 app.use((req, res) => {
    res.render("404", {
       titulo: 'Error 404'

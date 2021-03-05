@@ -1,13 +1,14 @@
 {
    "name": "tienda_online_nodejs",
    "version": "1.0.0",
-   "description": "Comercio electronico",
+   "description": "Práctica de una Tienda en linea",
+   "author": "Antonio Cadenas",
    "scripts": {
-      "start": "nodemon app.js",
+      "dev": "nodemon app.js",
+      "start": "node app.js",
       "test": "echo \"Error: no test specified\" && exit 1"
    },
    "keywords": [],
-   "author": "",
    "license": "ISC",
    "dependencies": {
       "bcryptjs": "^2.4.3",
